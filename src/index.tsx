@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { HomeTab } from './HomeTab';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HomeTab />
   </React.StrictMode>,
   document.getElementById('root')
 );
