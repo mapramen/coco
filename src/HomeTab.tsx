@@ -2,6 +2,7 @@ import * as React from "react";
 import { Provider, Flex, Text, Button, Header } from "@fluentui/react-northstar";
 import TeamsBaseComponent, { ITeamsBaseComponentState } from "msteams-react-base-component";
 import * as microsoftTeams from "@microsoft/teams-js";
+import GameActionCreator from "./ActionCreators/GameActionCreator";
 
 export interface IHomeTabState extends ITeamsBaseComponentState {
   entityId?: string;
@@ -32,6 +33,10 @@ export class HomeTab extends TeamsBaseComponent<IHomeTabProps, IHomeTabState> {
         entityId: "This is not hosted in Microsoft Teams"
       });
     }
+  }
+
+  public componentDidMount(){
+    microsoftTeams.getContext((context) => GameActionCreator.initialise(context))
   }
 
   /**
