@@ -13,7 +13,7 @@ export default function (state = initialState, action: IAction): ITicTacToeState
     switch (action.type) {
         case PLAY_MOVE: {
             return {
-                clickedSquareNumber: action.payload.id
+                clickedSquareNumber: action.payload.squareNumber
             };
         }
         default:
