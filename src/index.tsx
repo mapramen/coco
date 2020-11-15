@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { HomeTab } from './HomeTab';
+import GameApp from './GameApp';
+import { Provider } from 'react-redux'
+import store from './Redux/store'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <HomeTab />
-  </React.StrictMode>,
+  <Provider store = {store}>
+    <GameApp />
+  </Provider>,
   document.getElementById('root')
 );
 
