@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import '../GameApp.css';
-import { IAction, playMove } from '../Redux/actions';
+import { playMove } from '../Redux/actions';
+import { IAction } from '../Redux/actionTypes';
 import { RootState } from '../Redux/Reducers';
 
 interface ISquareStateToProps {

@@ -1,22 +1,10 @@
-import { PLAY_MOVE } from "./actionTypes";
+import { PLAY_MOVE, IAction } from "./actionTypes";
 
-let nextTodoId = 0;
-
-interface IPlayMovePayload {
-  squareNumber: number
-}
-
-type iActionPayload = IPlayMovePayload;
-
-
-export interface IAction {
-  type: string,
-  payload: iActionPayload
-}
-
-export const playMove = (squareNumber: number): IAction => ({
-  type: PLAY_MOVE,
-  payload: {
-    squareNumber: squareNumber
+export function playMove(squareNumber: number): IAction {
+  return {
+    type: PLAY_MOVE,
+    payload: {
+      squareNumber: squareNumber
+    }
   }
-});
+}

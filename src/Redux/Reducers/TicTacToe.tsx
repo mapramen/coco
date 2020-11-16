@@ -1,5 +1,5 @@
-import { IAction } from '../actions';
-import { PLAY_MOVE } from '../actionTypes';
+import { IAction, PLAY_MOVE } from "../actionTypes";
+
 
 interface ITicTacToeState {
     clickedSquareNumber: number
