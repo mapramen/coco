@@ -52,8 +52,8 @@ class Board extends React.Component<IBoardProps, IBoardState> {
     renderSquare(i: number) {
         return (
             <Square
+                squareNumber = {i}
                 value={this.state.squares[i]}
-                onClick={() => this.handleClick(i)}
             />
         );
     }
@@ -70,7 +70,7 @@ class Board extends React.Component<IBoardProps, IBoardState> {
         return (
             <div>
                 <div className="status">{status}</div>
-                <h1>{this.props.clickedSquareNumber}</h1>
+                <h1>Player Clicked: {this.props.clickedSquareNumber}</h1>
                 <div className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
@@ -112,4 +112,8 @@ function calculateWinner(squares : Array<string>) {
     return null;
 }
 
-export default connect<IBoardStateProps, IBoardDispatchProps, IBoardOwnProps>(mapStateToProps, )(Board)
+export default connect<
+    IBoardStateProps,
+    IBoardDispatchProps,
+    IBoardOwnProps,
+    RootState>(mapStateToProps)(Board)
