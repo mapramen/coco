@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './GameApp.css';
 import Board from './Components/Board'
 

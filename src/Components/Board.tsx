@@ -1,10 +1,8 @@
 import { connect } from "react-redux";
 import React from 'react';
-import ReactDOM from 'react-dom';
 import '../GameApp.css';
 import Square from './Square';
 import { RootState } from "../Redux/Reducers";
-import { stat } from "fs";
 
 interface IBoardState {
     xIsNext: boolean,
@@ -55,7 +53,7 @@ class Board extends React.Component<IBoardProps, IBoardState> {
 
     render() {
         let status;
-        if (this.props.winner != "") {
+        if (this.props.winner !== "") {
             status = 'Winner: ' + this.props.winner;
         } else {
             status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');

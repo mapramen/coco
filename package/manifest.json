@@ -36,7 +36,7 @@
   ],
   "bots": [
     {
-      "botId": "437cda03-d6b5-47c5-85ce-e4562d448e2a",
+      "botId": "0c6e6e61-6cf4-4340-8ba4-9b6d942a0bb2",
       "scopes": [
         "personal",
         "groupchat",
@@ -47,7 +47,7 @@
   "connectors": [],
   "composeExtensions": [
     {
-      "botId": "437cda03-d6b5-47c5-85ce-e4562d448e2a",
+      "botId": "0c6e6e61-6cf4-4340-8ba4-9b6d942a0bb2",
       "commands": [
         {
           "id": "e59f849b-ceec-4e65-a072-51be0b9af001",
