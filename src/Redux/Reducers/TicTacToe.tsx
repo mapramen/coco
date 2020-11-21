@@ -38,7 +38,7 @@ function calculateWinner(squares : Array<string>) {
 function TicTacToeReducer(state = initialState, action: IAction): ITicTacToeState {
     switch (action.type) {
         case PLAY_MOVE: {
-            if(state.squares[action.payload.squareNumber] !== null || state.winner !== "") {
+            if(state.squares[action.payload.squareNumber] || state.winner !== "") {
                 return state;
             }
             const squares = state.squares.slice();
