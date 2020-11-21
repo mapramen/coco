@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import '../GameApp.css';
 import { playMove } from '../Redux/actions';
@@ -26,9 +25,6 @@ const mapDispatchToProps: ISquareDispatchToProps = {
 type ISquareProps = ISquareStateToProps & ISquareDispatchToProps & ISquareOwnProps;
 
 class Square extends React.Component<ISquareProps> {
-    constructor(props: ISquareProps){
-        super(props);
-    }
     render(){
         return (
             <button className="square" onClick={() => this.props.selectTile(this.props.squareNumber)}>

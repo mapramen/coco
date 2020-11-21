@@ -1,6 +1,5 @@
 import { IAction, PLAY_MOVE } from "../actionTypes";
 
-
 interface ITicTacToeState {
     clickedSquareNumber: number,
     squares: Array<string>,
@@ -36,10 +35,10 @@ function calculateWinner(squares : Array<string>) {
     return "";
 }
 
-export default function (state = initialState, action: IAction): ITicTacToeState {
+function TicTacToeReducer(state = initialState, action: IAction): ITicTacToeState {
     switch (action.type) {
         case PLAY_MOVE: {
-            if(state.squares[action.payload.squareNumber] != null || state.winner != "") {
+            if(state.squares[action.payload.squareNumber] || state.winner !== "") {
                 return state;
             }
             const squares = state.squares.slice();
@@ -55,3 +54,5 @@ export default function (state = initialState, action: IAction): ITicTacToeState
             return state;
     }
 }
+
+export default TicTacToeReducer;
