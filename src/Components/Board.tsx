@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import React from 'react';
-import '../GameApp.css';
+import './GameApp.css';
 import Square from './Square';
 import { RootState } from "../Redux/Reducers";
 

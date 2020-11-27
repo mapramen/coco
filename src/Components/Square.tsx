@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import '../GameApp.css';
+import './GameApp.css';
 import { playMove } from '../Redux/actions';
 import { IAction } from '../Redux/actionTypes';
 import { RootState } from '../Redux/Reducers';
