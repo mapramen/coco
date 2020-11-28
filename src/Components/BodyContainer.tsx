@@ -1,9 +1,10 @@
 import React from "react";
-import GameApp from "./GameApp";
+import TicTacToe from "./TicTacToe/Game";
 
 export default function BodyContainer() {
   return (
-  <div>
-    <GameApp/>
-  </div>);
+    <div>
+      <TicTacToe />
+    </div>
+  );
 }
