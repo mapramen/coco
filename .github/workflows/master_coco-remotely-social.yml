@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'coco-remotely-social'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b390d17f322f4c84a973b68a64dbce3a }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9883c2eaf73747d3bb58dba16cfcb1db }}
         package: .
