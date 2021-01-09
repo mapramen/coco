@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setGameId } from '../Redux/Reducers/GameReducer';
-import { setUserAlias, setUserId } from '../Redux/Reducers/UserReducer';
+import { setGameId } from '../Reducers/GameReducer';
+import { setUserAlias, setUserId } from '../Reducers/UserReducer';
 
 export default function HeadingContainer() {
   const [mockUserId, setMockUserId] = useState('');

@@ -1,6 +1,6 @@
 import produce from "immer";
-import { GameName, GameStatus, IGame, IGameEvent } from "./Games/GameTypes";
-import initialState, { INewPlayerEvent, INextPlayerTurnEvent, IPlayerWonEvent, ITicTacToeEvent, ITicTacToeGame, ITicTacToePlayer, ITileMarkedEvent, TicTacToeGameEventName } from "./Games/TicTacToeGameTypes";
+import { GameName, GameStatus, IGame, IGameEvent } from "../Games/GameTypes";
+import initialState, { INewPlayerEvent, INextPlayerTurnEvent, IPlayerWonEvent, ITicTacToeEvent, ITicTacToeGame, ITicTacToePlayer, ITileMarkedEvent, TicTacToeGameEventName } from "../Games/TicTacToeGameTypes";
 
 export default function TicTacToeReducer(baseState: IGame<GameName>, event: IGameEvent<GameName>): IGame<GameName> {
   if (baseState.gameId !== event.GameId) {

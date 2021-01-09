@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Game.css';
-import { playMove } from '../../Redux/actions';
-import { RootState } from '../../Redux/Reducers/RootReducer';
-import { IMarkTileAction, ITicTacToeGame, ITicTacToePlayerAction, TicTacToePlayerActionName } from '../../Redux/Reducers/Games/TicTacToeGameTypes';
-import { sendPlayerAction } from '../../Redux/Reducers/GameReducer';
+import { RootState } from '../../Reducers/RootReducer';
+import { IMarkTileAction, ITicTacToeGame, ITicTacToePlayerAction, TicTacToePlayerActionName } from '../../Games/TicTacToeGameTypes';
+import { sendPlayerAction } from '../../Reducers/GameReducer';
 
 interface ITileProps {
   tileNumber: number

@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import React from 'react';
 import './Game.css';
 import Tile from './Tile';
-import { RootState } from "../../Redux/Reducers/RootReducer";
-import { ITicTacToeGame, ITicTacToePlayer } from "../../Redux/Reducers/Games/TicTacToeGameTypes";
-import { GameStatus } from "../../Redux/Reducers/Games/GameTypes";
+import { RootState } from "../../Reducers/RootReducer";
+import { ITicTacToeGame, ITicTacToePlayer } from "../../Games/TicTacToeGameTypes";
+import { GameStatus } from "../../Games/GameTypes";
 
 export default function Board() {
   const game: ITicTacToeGame = useSelector((state: RootState) => state.game as ITicTacToeGame);

@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Realtime, Types } from "ably";
-import { GameName, IGame, IGameEvent, IGamePlayerAction } from "./Games/GameTypes";
-import initialState from "./Games/NoGameTypes";
-import { IAddPlayerAction, ITicTacToePlayer, ITicTacToePlayerAction, TicTacToePlayerActionName } from "./Games/TicTacToeGameTypes";
+import { GameName, IGame, IGameEvent, IGamePlayerAction } from "../Games/GameTypes";
+import initialState from "../Games/NoGameTypes";
+import { IAddPlayerAction, ITicTacToePlayer, ITicTacToePlayerAction, TicTacToePlayerActionName } from "../Games/TicTacToeGameTypes";
 import TicTacToeReducer from "./TicTacToeReducer";
 
 interface IGameDetails {

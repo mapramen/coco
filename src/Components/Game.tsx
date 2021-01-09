@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setupGame } from "../Redux/Reducers/GameReducer";
-import { GameName, GameStatus, IGame } from "../Redux/Reducers/Games/GameTypes";
-import { RootState } from "../Redux/Reducers/RootReducer";
+import { setupGame } from "../Reducers/GameReducer";
+import { GameName, GameStatus, IGame } from "../Games/GameTypes";
+import { RootState } from "../Reducers/RootReducer";
 import TicTacToe from "./TicTacToe/Game";
 
 export default function Game() {
