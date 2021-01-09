@@ -3,7 +3,7 @@ import { Realtime, Types } from "ably";
 import { GameName, IGame, IGameEvent, IGamePlayerAction } from "../Games/GameTypes";
 import emptyGame from "../Games/GameTypes";
 import { IAddPlayerAction } from "../Games/TicTacToe/PlayerActions";
-import TicTacToeReducer from "./TicTacToeReducer";
+import TicTacToeReducer from "./Games/TicTacToeReducer";
 import { TicTacToePlayerActionName } from "../Games/TicTacToe/Types";
 
 interface IGameDetails {
