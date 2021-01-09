@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Realtime, Types } from "ably";
 import { GameName, IGame, IGameEvent, IGamePlayerAction } from "../Games/GameTypes";
 import initialState from "../Games/NoGameTypes";
-import { IAddPlayerAction, ITicTacToePlayer, ITicTacToePlayerAction, TicTacToePlayerActionName } from "../Games/TicTacToeGameTypes";
+import { IAddPlayerAction, TicTacToePlayerActionName } from "../Games/TicTacToeGameTypes";
 import TicTacToeReducer from "./TicTacToeReducer";
 
 interface IGameDetails {
@@ -42,7 +42,7 @@ export const setupGame = createAsyncThunk(
     channel = realtimeClient.channels.get(channelId)
 
     channel.subscribe(message => {
-      let gameEvent = message.data as IGameEvent<GameName>;
+      let gameEvent = message.data as IGameEvent;
       console.log(gameEvent);
       thunkAPI.dispatch(processEvent(gameEvent))
     })
@@ -79,7 +79,7 @@ const gameSlice = createSlice({
     setCurrentUserPlayerId(state, action: PayloadAction<string>){
       state.currentUserPlayerId = action.payload;
     },
-    processEvent(state, action: PayloadAction<IGameEvent<GameName>>){
+    processEvent(state, action: PayloadAction<IGameEvent>){
       let newState: IGame<GameName> = state;
 
       if(state.gameName === GameName.TicTacToe){

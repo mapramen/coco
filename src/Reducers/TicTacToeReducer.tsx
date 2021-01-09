@@ -2,7 +2,7 @@ import produce from "immer";
 import { GameName, GameStatus, IGame, IGameEvent } from "../Games/GameTypes";
 import initialState, { INewPlayerEvent, INextPlayerTurnEvent, IPlayerWonEvent, ITicTacToeEvent, ITicTacToeGame, ITicTacToePlayer, ITileMarkedEvent, TicTacToeGameEventName } from "../Games/TicTacToeGameTypes";
 
-export default function TicTacToeReducer(baseState: IGame<GameName>, event: IGameEvent<GameName>): IGame<GameName> {
+export default function TicTacToeReducer(baseState: IGame<GameName>, event: IGameEvent): IGame<GameName> {
   if (baseState.gameId !== event.GameId) {
     return baseState;
   }
@@ -14,14 +14,10 @@ export default function TicTacToeReducer(baseState: IGame<GameName>, event: IGam
   const newState = produce(baseState as ITicTacToeGame, game => {
     switch (event.EventName) {
       case TicTacToeGameEventName.GameCreated:
-        {
-          game.status = GameStatus.Created;
-        }
+        game.status = GameStatus.Created;
         break;
       case TicTacToeGameEventName.GameStarted:
-        {
-          game.status = GameStatus.Started;
-        }
+        game.status = GameStatus.Started;
         break;
       case TicTacToeGameEventName.NewPlayer:
         {
@@ -35,9 +31,7 @@ export default function TicTacToeReducer(baseState: IGame<GameName>, event: IGam
         }
         break;
       case TicTacToeGameEventName.NextPlayerTurn:
-        {
-          game.gameState.currentTurnPlayerId = (event as INextPlayerTurnEvent).PlayerId;
-        }
+        game.gameState.currentTurnPlayerId = (event as INextPlayerTurnEvent).PlayerId;
         break;
       case TicTacToeGameEventName.TileMarked:
         {
@@ -46,15 +40,11 @@ export default function TicTacToeReducer(baseState: IGame<GameName>, event: IGam
         }
         break;
       case TicTacToeGameEventName.PlayerWon:
-        {
-          game.status = GameStatus.Completed;
-          game.gameState.winnerPlayerId = (event as IPlayerWonEvent).PlayerId;
-        }
+        game.status = GameStatus.Completed;
+        game.gameState.winnerPlayerId = (event as IPlayerWonEvent).PlayerId;
         break;
       case TicTacToeGameEventName.GameDraw:
-        {
-          game.status = GameStatus.Completed;
-        }
+        game.status = GameStatus.Completed;
         break;
       default:
         break;

@@ -3,7 +3,7 @@ import React from 'react';
 import './Game.css';
 import Tile from './Tile';
 import { RootState } from "../../Reducers/RootReducer";
-import { ITicTacToeGame, ITicTacToePlayer } from "../../Games/TicTacToeGameTypes";
+import { ITicTacToeGame } from "../../Games/TicTacToeGameTypes";
 import { GameStatus } from "../../Games/GameTypes";
 
 export default function Board() {

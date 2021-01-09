@@ -33,50 +33,50 @@ export enum TicTacToeGameEventName {
   GameDraw = 'GameDraw'
 }
 
-export interface IGameCreatedEvent extends IGameEvent<GameName.TicTacToe> {
+export interface IGameCreatedEvent extends IGameEvent {
   EventName: TicTacToeGameEventName.GameCreated
   GameName: GameName
 }
 
-export interface INewPlayerEvent extends IGameEvent<GameName.TicTacToe> {
+export interface INewPlayerEvent extends IGameEvent {
   EventName: TicTacToeGameEventName.NewPlayer
   PlayerId: string,
   PlayerAlias: string,
   TileMark: TicTacToeMark
 }
 
-export interface IGameStartedEvent extends IGameEvent<GameName.TicTacToe> {
+export interface IGameStartedEvent extends IGameEvent {
   EventName: TicTacToeGameEventName.GameStarted
 }
 
-export interface ITileMarkedEvent extends IGameEvent<GameName.TicTacToe> {
+export interface ITileMarkedEvent extends IGameEvent {
   EventName: TicTacToeGameEventName.TileMarked,
   PlayerId: string,
   TileNumber: number,
   TileMark: TicTacToeMark
 }
 
-export interface INextPlayerTurnEvent extends IGameEvent<GameName.TicTacToe> {
+export interface INextPlayerTurnEvent extends IGameEvent {
   EventName: TicTacToeGameEventName.NextPlayerTurn,
   PlayerId: string
 }
 
-export interface IPlayerWonEvent extends IGameEvent<GameName.TicTacToe> {
+export interface IPlayerWonEvent extends IGameEvent {
   EventName: TicTacToeGameEventName.PlayerWon,
   PlayerId: string
 }
 
-export interface IGameDrawEvent extends IGameEvent<GameName.TicTacToe> {
+export interface IGameDrawEvent extends IGameEvent {
   EventName: TicTacToeGameEventName.GameDraw
 }
 
 export type ITicTacToeEvent = IGameCreatedEvent | INewPlayerEvent | IGameStartedEvent | ITileMarkedEvent | INextPlayerTurnEvent | IPlayerWonEvent | IGameDrawEvent;
 
-export interface ITicTacToePlayer extends IGamePlayer<GameName.TicTacToe> {
+export interface ITicTacToePlayer extends IGamePlayer {
   tileMark: TicTacToeMark
 }
 
-export interface ITicTacToeState extends IGameState<GameName.TicTacToe> {
+export interface ITicTacToeState extends IGameState {
   currentTurnPlayerId: string,
   winnerPlayerId: string,
   tiles: Array<string>

@@ -16,21 +16,20 @@ export interface IGamePlayerAction {
   PlayerId: string
 }
 
-export interface IGamePlayer<T> {
+export interface IGamePlayer {
   playerId: string,
   playerAlias: string,
 }
 
-export interface IGameTeam<T> {
+export interface IGameTeam {
   teamId: string,
   teamName?: string,
 }
 
-export interface IGameState<T> {
-
+export interface IGameState {
 }
 
-export interface IGameEvent<T> {
+export interface IGameEvent {
   GameId: string,
   EventId: string,
   PreviousEventId: string,
@@ -43,8 +42,8 @@ export interface IGame<T> {
   stateId: string,
   status: GameStatus,
   currentUserPlayerId: string,
-  players: Array<IGamePlayer<T>>,
-  teams: Array<IGameTeam<T>>,
-  gameState: IGameState<T>,
-  events: Array<IGameEvent<T>>
+  players: Array<IGamePlayer>,
+  teams: Array<IGameTeam>,
+  gameState: IGameState,
+  events: Array<IGameEvent>
 }
