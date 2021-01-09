@@ -1,10 +1,10 @@
 import React from "react";
-import TicTacToe from "./TicTacToe/Game";
+import Game from "./Game";
 
 export default function BodyContainer() {
   return (
     <div>
-      <TicTacToe />
+      <Game />
     </div>
   );
 }

@@ -2,26 +2,34 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Game.css';
 import { playMove } from '../../Redux/actions';
-import { RootState } from '../../Redux/Reducers';
+import { RootState } from '../../Redux/Reducers/RootReducer';
+import { IMarkTileAction, ITicTacToeGame, ITicTacToePlayerAction, TicTacToePlayerActionName } from '../../Redux/Reducers/Games/TicTacToeGameTypes';
+import { sendPlayerAction } from '../../Redux/Reducers/GameReducer';
 
 interface ITileProps {
   tileNumber: number
 }
 
-function selectTile(state: RootState, tileNumber: number): string {
-  return state.tictactoe.squares[tileNumber];
-}
-
 export default function Tile(tileProps: ITileProps) {
-  const winner: string = useSelector((state: RootState) => state.tictactoe.winner);
-  const tileValue = useSelector((state: RootState) => selectTile(state, tileProps.tileNumber));
+  const game: ITicTacToeGame = useSelector((state: RootState) => state.game as ITicTacToeGame);
+  const winner: string = game.gameState.winnerPlayerId;
+  const tileValue = game.gameState.tiles[tileProps.tileNumber]
 
   const dispatch = useDispatch();
 
   const handleTileClick = () => {
-    if (!tileValue && !winner) {
-      dispatch(playMove(tileProps.tileNumber))
+    if (tileValue || winner || game.currentUserPlayerId !== game.gameState.currentTurnPlayerId) {
+      return;
     }
+
+    const markTileAction: IMarkTileAction = {
+      GameId: game.gameId,
+      ActionName: TicTacToePlayerActionName.MarkTile,
+      PlayerId: game.currentUserPlayerId,
+      TileNumber: tileProps.tileNumber
+    };
+
+    dispatch(sendPlayerAction(markTileAction))
   }
 
   return (

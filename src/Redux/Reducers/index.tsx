@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import tictactoeReducer from './TicTacToe';
-import userReducer from './User';
+import userReducer from './UserReducer';
 
 export const rootReducer = combineReducers({
   user: userReducer,

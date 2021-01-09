@@ -1,39 +1,44 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setMockUser } from '../Redux/actions';
+import { setGameId } from '../Redux/Reducers/GameReducer';
+import { setUserAlias, setUserId } from '../Redux/Reducers/UserReducer';
 
 export default function HeadingContainer() {
-  const [userId, setUserId] = useState('');
-  const [gameId, setGameId] = useState('');
-  const [userAlias, setUserAlias] = useState('');
+  const [mockUserId, setMockUserId] = useState('');
+  const [mockUserAlias, setMockUserAlias] = useState('');
+  const [mockGameId, setMockGameId] = useState('');
   const dispatch = useDispatch()
 
   function handleUserIdChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    setUserId(e.target.value);
+    setMockUserId(e.target.value);
   }
 
   function handleGameIdChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    setGameId(e.target.value);
+    setMockGameId(e.target.value);
   }
 
   function handleUserAliasChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    setUserAlias(e.target.value);
+    setMockUserAlias(e.target.value);
   }
 
-  function handleSubmit() {
-    dispatch(setMockUser(userId, userAlias, gameId));
+  function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
+    e.preventDefault();
+    
+    dispatch(setUserId(mockUserId));
+    dispatch(setUserAlias(mockUserAlias));
+    dispatch(setGameId(mockGameId));
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        UserID: <input type="text" value={userId} onChange={handleUserIdChange} />
+        UserID: <input type="text" value={mockUserId} onChange={handleUserIdChange} />
       </label>
       <label>
-        Alias: <input type="text" value={userAlias} onChange={handleUserAliasChange} />
+        Alias: <input type="text" value={mockUserAlias} onChange={handleUserAliasChange} />
       </label>
       <label>
-        GameID: <input type="text" value={gameId} onChange={handleGameIdChange} />
+        GameID: <input type="text" value={mockGameId} onChange={handleGameIdChange} />
       </label>
       <input type="submit" value="Submit" />
     </form>);
