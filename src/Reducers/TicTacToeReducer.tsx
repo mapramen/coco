@@ -1,6 +1,7 @@
 import produce from "immer";
 import { GameStatus, IGame, IGameEvent } from "../Games/GameTypes";
-import initialState, { INewPlayerEvent, INextPlayerTurnEvent, IPlayerWonEvent, ITicTacToeEvent, ITicTacToeGame, ITicTacToePlayer, ITileMarkedEvent, TicTacToeGameEventName } from "../Games/TicTacToeGameTypes";
+import { INewPlayerEvent, INextPlayerTurnEvent, IPlayerWonEvent, ITicTacToeEvent, ITileMarkedEvent } from "../Games/TicTacToe/GameEvents";
+import emptyGame, { ITicTacToeGame, ITicTacToePlayer, TicTacToeGameEventName } from "../Games/TicTacToe/Types";
 
 export default function TicTacToeReducer(baseState: IGame, event: IGameEvent): IGame {
   if (baseState.gameId !== event.GameId) {
@@ -8,7 +9,7 @@ export default function TicTacToeReducer(baseState: IGame, event: IGameEvent): I
   }
 
   if (event.EventName === TicTacToeGameEventName.GameCreated) {
-    baseState = initialState
+    baseState = emptyGame
   }
 
   const newState: ITicTacToeGame = produce(baseState as ITicTacToeGame, game => {

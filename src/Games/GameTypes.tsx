@@ -47,3 +47,17 @@ export interface IGame {
   gameState: IGameState,
   events: Array<IGameEvent>
 }
+
+const initialGame: IGame = {
+  gameId: '',
+  gameName: GameName.None,
+  stateId: '',
+  status: GameStatus.None,
+  currentUserPlayerId: '',
+  players: [],
+  teams: [],
+  gameState: {},
+  events: []
+}
+
+export default initialGame;

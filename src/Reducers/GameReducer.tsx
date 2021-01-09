@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Realtime, Types } from "ably";
 import { GameName, IGame, IGameEvent, IGamePlayerAction } from "../Games/GameTypes";
-import initialState from "../Games/NoGameTypes";
-import { IAddPlayerAction, TicTacToePlayerActionName } from "../Games/TicTacToeGameTypes";
+import emptyGame from "../Games/GameTypes";
+import { IAddPlayerAction } from "../Games/TicTacToe/PlayerActions";
 import TicTacToeReducer from "./TicTacToeReducer";
+import { TicTacToePlayerActionName } from "../Games/TicTacToe/Types";
 
 interface IGameDetails {
   GameId: string,
@@ -68,7 +69,7 @@ export const sendPlayerAction = createAsyncThunk(
 
 const gameSlice = createSlice({
   name: 'game',
-  initialState: initialState,
+  initialState: emptyGame,
   reducers: {
     setGameId(state, action: PayloadAction<string>) {
       state.gameId = action.payload;
