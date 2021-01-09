@@ -82,7 +82,7 @@ export interface ITicTacToeState extends IGameState {
   tiles: Array<string>
 }
 
-export interface ITicTacToeGame extends IGame<GameName.TicTacToe> {
+export interface ITicTacToeGame extends IGame {
   players: Array<ITicTacToePlayer>,
   gameState: ITicTacToeState,
   events: Array<ITicTacToeEvent>

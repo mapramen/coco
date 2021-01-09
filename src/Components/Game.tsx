@@ -7,7 +7,7 @@ import TicTacToe from "./TicTacToe/Game";
 
 export default function Game() {
   const { userId, userAlias } = useSelector((state: RootState) => state.user);
-  const game = useSelector((state: RootState) => state.game as IGame<GameName>);
+  const game = useSelector((state: RootState) => state.game as IGame);
   const gameId = game.gameId;
   const dispatch = useDispatch();
 

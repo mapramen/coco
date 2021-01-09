@@ -36,9 +36,9 @@ export interface IGameEvent {
   EventName: string
 }
 
-export interface IGame<T> {
+export interface IGame {
   gameId: string,
-  gameName: T,
+  gameName: GameName,
   stateId: string,
   status: GameStatus,
   currentUserPlayerId: string,

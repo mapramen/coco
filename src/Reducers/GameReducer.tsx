@@ -80,7 +80,7 @@ const gameSlice = createSlice({
       state.currentUserPlayerId = action.payload;
     },
     processEvent(state, action: PayloadAction<IGameEvent>){
-      let newState: IGame<GameName> = state;
+      let newState: IGame = state;
 
       if(state.gameName === GameName.TicTacToe){
         newState = TicTacToeReducer(state, action.payload);

@@ -1,6 +1,6 @@
 import { GameName, GameStatus, IGame } from './GameTypes';
 
-const initialGame: IGame<GameName> = {
+const initialGame: IGame = {
   gameId: '',
   gameName: GameName.None,
   stateId: '',
