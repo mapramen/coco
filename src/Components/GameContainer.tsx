@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setupGame } from "../Reducers/GameReducer";
-import { GameName, GameStatus, IGame } from "../Games/GameTypes";
+import { GameName, GameStatus } from "../Games/GameTypes";
 import { RootState } from "../Reducers/RootReducer";
 import TicTacToe from "./TicTacToe/Game";
 
-export default function Game() {
+export default function GameContainer() {
   const { userId, userAlias } = useSelector((state: RootState) => state.user);
-  const game = useSelector((state: RootState) => state.game as IGame);
+  const game = useSelector((state: RootState) => state.game);
   const gameId = game.gameId;
   const dispatch = useDispatch();
 
@@ -17,15 +17,16 @@ export default function Game() {
     }
   }, [userId, userAlias, gameId, dispatch]);
 
-  function renderGame(){
-    if(game.status !== GameStatus.None && game.gameName === GameName.TicTacToe){
-      return <TicTacToe/>
-    }
+  if (game.status === GameStatus.None) {
+    return <div></div>;
   }
 
-  return (
-    <div>
-      {renderGame()}
-    </div>
-  );
+  switch (game.gameName) {
+    case GameName.TicTacToe:
+      return <TicTacToe />
+    default:
+      break;
+  }
+
+  return <div></div>;
 }

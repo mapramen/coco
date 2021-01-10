@@ -1,13 +1,15 @@
+import { Flex } from '@fluentui/react-northstar';
 import React from 'react';
-import './Game.css';
-import Board from './Board'
+import Board from './Board';
+import EventLog from './EventLog';
+import Information from './Information';
 
 export default function Game() {
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board />
-      </div>
-    </div>
+    <Flex hAlign="center">
+      {/* <Information /> */}
+      <Board />
+      {/* <EventLog /> */}
+    </Flex>
   );
 };

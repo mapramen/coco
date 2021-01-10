@@ -1,7 +1,32 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import produce from "immer";
 import { GameStatus, IGame, IGameEvent } from "../../Games/GameTypes";
 import { INewPlayerEvent, INextPlayerTurnEvent, IPlayerWonEvent, ITicTacToeEvent, ITileMarkedEvent } from "../../Games/TicTacToe/GameEvents";
-import emptyGame, { ITicTacToeGame, ITicTacToePlayer, TicTacToeGameEventName } from "../../Games/TicTacToe/Types";
+import { IMarkTileAction } from "../../Games/TicTacToe/PlayerActions";
+import emptyGame, { ITicTacToeGame, ITicTacToePlayer, TicTacToeGameEventName, TicTacToePlayerActionName } from "../../Games/TicTacToe/Types";
+import { selectGame } from "../../Selectors/GameSelector";
+import { sendPlayerAction } from "../GameReducer";
+import { RootState } from "../RootReducer";
+
+export const markTileAction = createAsyncThunk(
+  'tic-tac-toe/markTile',
+  (tileNumber: number, thunkAPI) => {
+    const game = selectGame<ITicTacToeGame>(thunkAPI.getState() as RootState);
+
+    if(game.currentUserPlayerId !== game.gameState.currentTurnPlayerId){
+      return;
+    }
+
+    const markTileAction: IMarkTileAction = {
+      GameId: game.gameId,
+      ActionName: TicTacToePlayerActionName.MarkTile,
+      PlayerId: game.currentUserPlayerId,
+      TileNumber: tileNumber
+    };
+
+    thunkAPI.dispatch(sendPlayerAction(markTileAction));
+  }
+);
 
 export default function TicTacToeReducer(baseState: IGame, event: IGameEvent): IGame {
   if (baseState.gameId !== event.GameId) {
@@ -33,6 +58,7 @@ export default function TicTacToeReducer(baseState: IGame, event: IGameEvent): I
         break;
       case TicTacToeGameEventName.NextPlayerTurn:
         game.gameState.currentTurnPlayerId = (event as INextPlayerTurnEvent).PlayerId;
+        game.status = GameStatus.InProgress;
         break;
       case TicTacToeGameEventName.TileMarked:
         {

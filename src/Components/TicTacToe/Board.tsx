@@ -1,86 +1,33 @@
-import { useSelector } from "react-redux";
+import _ from "lodash";
 import React from 'react';
-import './Game.css';
-import Tile from './Tile';
+import { useSelector } from "react-redux";
+import { Box, Flex, Header } from "@fluentui/react-northstar";
 import { RootState } from "../../Reducers/RootReducer";
-import { ITicTacToeGame } from "../../Games/TicTacToe/Types";
-import { GameStatus } from "../../Games/GameTypes";
+import Tile from './Tile';
+import GameStatusHeader from "./GameStatusHeader";
+import { selectGameName } from "../../Selectors/GameSelector";
 
 export default function Board() {
-  const game: ITicTacToeGame = useSelector((state: RootState) => state.game as ITicTacToeGame);
+  const gameName = useSelector((state: RootState) => selectGameName(state));
 
-  const renderTile = (tileNumber: number) => <Tile tileNumber={tileNumber} />
+  function renderRow(rowNumber: number) {
+    var row = _.range(3 * rowNumber, 3 * rowNumber + 3)
+      .map(tileNumber => <Tile tileNumber={tileNumber} />);
 
-  function winnerString(): string {
-    const winnerPlayerId: string = game.gameState.winnerPlayerId;
-    if (winnerPlayerId === '') {
-      if (game.status === GameStatus.Completed) {
-        return 'Draw!!!';
-      }
-      return '';
-    }
-
-    if (winnerPlayerId === game.currentUserPlayerId) {
-      return 'You Won!!!';
-    }
-
-    const winner = game.players.find(x => x.playerId === winnerPlayerId)
-
-    if (winner === undefined) {
-      return '';
-    }
-
-    return winner.playerAlias + ' Won!!!';
+    return <Flex gap="gap.medium" padding="padding.medium" hAlign="center" key={rowNumber}>
+      {row}
+    </Flex>
   }
 
-  function currentTurnString(): string {
-    if (game.status === GameStatus.Completed) {
-      return '';
-    }
-
-    const currentTurnPlayerId: string = game.gameState.currentTurnPlayerId;
-
-    if (game.currentUserPlayerId === currentTurnPlayerId) {
-      return 'Your turn'
-    }
-
-    const currentTurnPlayer = game.players.find(x => x.playerId === currentTurnPlayerId)
-
-    if (currentTurnPlayer === undefined) {
-      return '';
-    }
-
-    return currentTurnPlayer.playerAlias + '\'s turn';
-  }
-
-  function renderStatusBanner() {
-    const s = winnerString();
-    if (s !== '') {
-      return s;
-    }
-
-    return currentTurnString();
-  }
+  var rows = _.range(0, 3).map(rowNumber => renderRow(rowNumber));
 
   return (
-    <div>
-      <h1 className="status">{game.gameName}</h1>
-      <h2>{renderStatusBanner()}</h2>
-      <div className="board-row">
-        {renderTile(0)}
-        {renderTile(1)}
-        {renderTile(2)}
-      </div>
-      <div className="board-row">
-        {renderTile(3)}
-        {renderTile(4)}
-        {renderTile(5)}
-      </div>
-      <div className="board-row">
-        {renderTile(6)}
-        {renderTile(7)}
-        {renderTile(8)}
-      </div>
-    </div>
+    <Box>
+      <Header content={gameName} align="center" />
+      <GameStatusHeader />
+      <>
+        {rows}
+      </>
+    </Box>
   );
 }

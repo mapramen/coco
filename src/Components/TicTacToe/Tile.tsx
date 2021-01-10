@@ -2,39 +2,33 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Game.css';
 import { RootState } from '../../Reducers/RootReducer';
-import { sendPlayerAction } from '../../Reducers/GameReducer';
-import { ITicTacToeGame, TicTacToePlayerActionName } from '../../Games/TicTacToe/Types';
-import { IMarkTileAction } from '../../Games/TicTacToe/PlayerActions';
+import { selectTileValue } from '../../Selectors/TicTacToeSelector';
+import { Button } from '@fluentui/react-northstar';
+import { selectGameStatus } from '../../Selectors/GameSelector';
+import { GameStatus } from '../../Games/GameTypes';
+import { markTileAction } from '../../Reducers/Games/TicTacToeReducer';
 
 interface ITileProps {
   tileNumber: number
 }
 
 export default function Tile(tileProps: ITileProps) {
-  const game: ITicTacToeGame = useSelector((state: RootState) => state.game as ITicTacToeGame);
-  const winner: string = game.gameState.winnerPlayerId;
-  const tileValue = game.gameState.tiles[tileProps.tileNumber]
-
+  const { tileNumber } = tileProps;
+  const status = useSelector((state: RootState) => selectGameStatus(state))
+  const tileValue = useSelector((state: RootState) => selectTileValue(state, tileNumber));
   const dispatch = useDispatch();
 
   const handleTileClick = () => {
-    if (tileValue || winner || game.currentUserPlayerId !== game.gameState.currentTurnPlayerId) {
+    if (status !== GameStatus.InProgress || tileValue) {
       return;
     }
 
-    const markTileAction: IMarkTileAction = {
-      GameId: game.gameId,
-      ActionName: TicTacToePlayerActionName.MarkTile,
-      PlayerId: game.currentUserPlayerId,
-      TileNumber: tileProps.tileNumber
-    };
-
-    dispatch(sendPlayerAction(markTileAction))
+    dispatch(markTileAction(tileNumber))
   }
 
-  return (
-    <button className="square" onClick={() => handleTileClick()}>
-      {tileValue}
-    </button>
-  );
+  return <Button
+    content={tileValue}
+    iconOnly
+    key={tileNumber}
+    onClick={() => handleTileClick()} />;
 }

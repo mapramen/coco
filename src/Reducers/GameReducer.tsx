@@ -5,6 +5,8 @@ import emptyGame from "../Games/GameTypes";
 import { IAddPlayerAction } from "../Games/TicTacToe/PlayerActions";
 import TicTacToeReducer from "./Games/TicTacToeReducer";
 import { TicTacToePlayerActionName } from "../Games/TicTacToe/Types";
+import { RootState } from "./RootReducer";
+import { selectGame } from "../Selectors/GameSelector";
 
 interface IGameDetails {
   GameId: string,
@@ -62,7 +64,8 @@ export const setupGame = createAsyncThunk(
 
 export const sendPlayerAction = createAsyncThunk(
   'game/playerAction',
-  (playerAction: IGamePlayerAction, thunkAPI) => {
+  (playerAction: IGamePlayerAction, thunkAPI) => 
+  {
     channel.publish('playerAction', playerAction);
   }
 )

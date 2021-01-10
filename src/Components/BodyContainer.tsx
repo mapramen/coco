@@ -1,10 +1,10 @@
 import React from "react";
-import Game from "./Game";
+import GameContainer from "./GameContainer";
 
 export default function BodyContainer() {
   return (
     <div>
-      <Game />
+      <GameContainer />
     </div>
   );
 }

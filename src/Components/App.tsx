@@ -1,15 +1,13 @@
 import React from 'react';
-import './App.css';
+import { Provider, teamsTheme } from "@fluentui/react-northstar";
 import HeaderContainer from './HeaderContainer';
 import BodyContainer from './BodyContainer';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <HeaderContainer/>
-        <BodyContainer/>
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <Provider theme={teamsTheme} >
+      <HeaderContainer />
+      <BodyContainer />
+    </Provider>
+  );
 };
